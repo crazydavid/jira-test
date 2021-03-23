@@ -1,7 +1,7 @@
 import { SearchPanel } from './search-panel'
 import { List } from './list'
 import { useDebounce, useDocumentTitle } from "utils"
-import {ButtonNoPadding, Row} from 'components/lib'
+import {ButtonNoPadding, ErrorBox, Row} from 'components/lib'
 import {  Typography } from 'antd'
 import { useProjects } from 'utils/useProjects'
 import { useUsers } from 'utils/useUsers'
@@ -11,8 +11,7 @@ import { useProjectModal, useProjectsSearchParams } from './util'
 export const ProjectListScreen = () => {
     const { open } = useProjectModal()
     const [params,setParams] = useProjectsSearchParams()
-    const debouncedParam = useDebounce(params,200)
-    const { isLoading, error, data: list, retry } = useProjects(debouncedParam)
+    const { isLoading, error, data: list } = useProjects(useDebounce(params, 200))
     const { data: users } = useUsers()
     useDocumentTitle('项目列表',false)
     return <Container>
@@ -23,8 +22,8 @@ export const ProjectListScreen = () => {
             </ButtonNoPadding>
         </Row>
         <SearchPanel users={users || []} params={params} setParams={setParams} />
-        {error ? <Typography.Text type={'danger'}>{error.message}</Typography.Text>:null}
-        <List refresh={retry} loading={isLoading} users={users || []} dataSource={list || []}/>
+        <ErrorBox error={error}/>
+        <List loading={isLoading} users={users || []} dataSource={list || []}/>
     </Container>
 }
 
