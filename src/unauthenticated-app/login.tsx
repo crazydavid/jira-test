@@ -16,7 +16,7 @@ export const LoginScreen = ({ onError }: { onError: (error: Error) => void }) =>
         }
     }
 
-    return <Form onFinish={handleSubmit}>
+    return (<Form onFinish={handleSubmit}>
         <Form.Item name="username" rules={[{required:true,message:'请输入用户名'}]}>
             <Input placeholder="用户名" type="text" id={'username'}/>
         </Form.Item>
@@ -26,5 +26,5 @@ export const LoginScreen = ({ onError }: { onError: (error: Error) => void }) =>
         <Form.Item>
             <LongButton loading={isLoading} htmlType={'submit'} type={'primary'}>登录</LongButton>
         </Form.Item>
-    </Form>
+    </Form>)
 }

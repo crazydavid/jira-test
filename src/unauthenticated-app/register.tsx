@@ -20,7 +20,7 @@ export const RegisterScreen = ({onError}:{onError:(error:Error)=>void}) => {
         }
     }
 
-    return <Form onFinish={handleSubmit}>
+    return (<Form onFinish={handleSubmit}>
         <Form.Item name="username" rules={[{ required: true, message: '请输入用户名' }]}>
             <Input placeholder="用户名" type="text" id={'username'} />
         </Form.Item>
@@ -33,5 +33,5 @@ export const RegisterScreen = ({onError}:{onError:(error:Error)=>void}) => {
         <Form.Item>
             <LongButton loading={isLoading} htmlType={'submit'} type={'primary'}>注册</LongButton>
         </Form.Item>
-    </Form>
+    </Form>)
 }
