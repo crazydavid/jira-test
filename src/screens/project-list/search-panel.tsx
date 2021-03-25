@@ -1,6 +1,6 @@
-import { Form, Input, Select } from "antd"
+import { Form, Input } from "antd"
 import { UserSelect } from "components/user-select"
-import { Project } from "./list"
+import { Project } from "types/project"
 
 export interface User{
     id: number
@@ -41,17 +41,6 @@ export const SearchPanel = ({ users, params, setParams }: SearchPanelProps) => {
                         personId: value
                     })}
                 />
-                {/* <Select
-                    value={params.personId}
-                    onChange={value => setParams({
-                    ...params,
-                    personId: value
-                })}>
-                    <Select.Option value={""}>负责人</Select.Option>
-                    {
-                        users.map(user => <Select.Option key={user.id} value={String(user.id)}>{ user.name }</Select.Option>)
-                    }
-                </Select> */}
             </Form.Item>
         </Form>
     )
